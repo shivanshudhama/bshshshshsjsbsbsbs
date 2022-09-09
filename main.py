@@ -151,7 +151,7 @@ async def account_login(bot: Client, m: Message):
         vp+=tns      
     cool1 = ""    
     for data in topicid:
-        t_name=(data["topicName"])
+        t_name=(data["topicName"].replace(" ",""))
         tid = (data["id"])
         scraper = cloudscraper.create_scraper()
         html3 = scraper.get("https://elearn.crwilladmin.com/api/v1/comp/batch-detail/"+raw_text2+"?redirectBy=mybatch&topicId="+tid+"&token="+token).content
@@ -204,7 +204,7 @@ async def account_login(bot: Client, m: Message):
             html4 = scraper.get("https://elearn.crwilladmin.com/api/v1/comp/batch-detail/"+raw_text2+"?redirectBy=mybatch&topicId="+t+"&token="+token).content
             ff = json.loads(html4)
             #vc =ff.json()["data"]["class_list"]["batchDescription"]
-            mm = ff["data"]["class_list"]["batchName"]   
+            mm = ff["data"]["class_list"]["batchName"].replace("/ "," ")
             vv =ff["data"]["class_list"]["classes"]
             vv.reverse()
             #clan =f"**{vc}**\n\nNo of links found in topic-id {raw_text3} are **{len(vv)}**"
